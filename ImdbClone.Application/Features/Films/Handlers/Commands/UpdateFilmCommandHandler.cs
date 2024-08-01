@@ -58,7 +58,7 @@ public class UpdateFilmCommandHandler : IRequestHandler<UpdateFilmCommand, Unit>
         else if (request.UserListDto != null)
         {
             var film = await _filmRepository.Get(request.UserListDto.Id);
-            var user = _mapper.Map<User>(await _userRepository.Get(request.UserListDto.UserId));
+            var user = _mapper.Map<ApplicationUser>(await _userRepository.Get(request.UserListDto.UserId));
             await _filmRepository.AddUser(film, user);
         }
         // else if (request.UpdateFilmCharactersListDto != null)

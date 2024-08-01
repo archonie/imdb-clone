@@ -9,7 +9,7 @@ using MediatR;
 
 namespace ImdbClone.Application.Features.Users.Handlers.Commands;
 
-public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, BaseCommandResponse>
+public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, RegisterResponse>
 {
     private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
@@ -19,22 +19,30 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, BaseC
         _userRepository = userRepository;
         _mapper = mapper;
     }
-    public async Task<BaseCommandResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
-    {        
-        var response = new BaseCommandResponse();
-        var validator = new CreateUserDtoValidator();
-        var validationResult = await validator.ValidateAsync(request.UserDto);
-        if (!validationResult.IsValid)
+    public async Task<RegisterResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+    {
+        
+        // var validator = new CreateUserDtoValidator();
+        // var validationResult = await validator.ValidateAsync(request.UserDto);
+        // if (!validationResult.IsValid)
+        // {
+        //     response.Success = false;
+        //     response.Message = "Creation Failed";
+        //     response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
+        // }
+        var getUser = await _userRepository.FindUserByEmail(request.UserDto.Username);
+        if (getUser != null)
         {
-            response.Success = false;
-            response.Message = "Creation Failed";
-            response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
+            return new RegisterResponse(false, "User already registered");
         }
-        var user = _mapper.Map<User>(request.UserDto);
-        user = await _userRepository.Add(user);
-        response.Success = true;
-        response.Message = "Creation Successful";
-        response.Id = user.Id;
-        return response;
+
+        var user = new ApplicationUser
+        {
+            Username = request.UserDto.Username,
+            Password = BCrypt.Net.BCrypt.HashPassword(request.UserDto.Password)
+        };
+        await _userRepository.Add(user);
+        return new RegisterResponse(true, "User registered");
+        
     }
 }

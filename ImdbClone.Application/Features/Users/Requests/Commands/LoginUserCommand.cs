@@ -4,7 +4,7 @@ using MediatR;
 
 namespace ImdbClone.Application.Features.Users.Requests.Commands;
 
-public class CreateUserCommand : IRequest<RegisterResponse> 
+public class LoginUserCommand : IRequest<LoginResponse>
 {
-    public RegisterUserDto UserDto { get; set; }
+    public LoginDto LoginDto { get; set; }
 }

@@ -6,7 +6,7 @@ using MediatR;
 
 namespace ImdbClone.Application.Features.Users.Handlers.Queries;
 
-public class GetUserListRequestHandler : IRequestHandler<GetUserListRequest, List<UserDto>>
+public class GetUserListRequestHandler : IRequestHandler<GetUserListRequest, List<UserListDto>>
 {
     private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
@@ -17,9 +17,9 @@ public class GetUserListRequestHandler : IRequestHandler<GetUserListRequest, Lis
         _mapper = mapper;
     }
 
-    public async Task<List<UserDto>> Handle(GetUserListRequest request, CancellationToken cancellationToken)
+    public async Task<List<UserListDto>> Handle(GetUserListRequest request, CancellationToken cancellationToken)
     {
         var users = await _userRepository.GetAll();
-        return _mapper.Map<List<UserDto>>(users);
+        return _mapper.Map<List<UserListDto>>(users);
     }
 }

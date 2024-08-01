@@ -31,7 +31,7 @@ public class FilmDbContext : DbContext
 
     public DbSet<Film> Films { get; set; }
     public DbSet<Actor> Actors { get; set; }
-    public DbSet<User> Users { get; set; }
+    public DbSet<ApplicationUser> Users { get; set; }
     public DbSet<Character> Characters { get; set; }
     public DbSet<Director> Directors { get; set; }
 }

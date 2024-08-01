@@ -3,8 +3,7 @@ using ImdbClone.Application.DTOs.Film;
 
 namespace ImdbClone.Application.DTOs.User;
 
-public class UserDto : BaseDto
+public class UserListDto : BaseDto
 {
     public string Username { get; set; }
-    public List<FilmDto> WatchedFilms { get; set; }
 }

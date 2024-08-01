@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ImdbClone.Persistence.Configurations;
 
-public class UserConfiguration : IEntityTypeConfiguration<User>
+public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
 {
-    public void Configure(EntityTypeBuilder<User> builder)
+    public void Configure(EntityTypeBuilder<ApplicationUser> builder)
     {
         builder.HasKey(u => u.Id);
 
@@ -23,6 +23,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .UsingEntity<Dictionary<string, object>>(
                 "UserFilm",
                 j => j.HasOne<Film>().WithMany().HasForeignKey("FilmId"),
-                j => j.HasOne<User>().WithMany().HasForeignKey("UserId"));
+                j => j.HasOne<ApplicationUser>().WithMany().HasForeignKey("UserId"));
     }
 }

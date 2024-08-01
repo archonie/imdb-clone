@@ -20,11 +20,13 @@ public class MappingProfile : Profile
         CreateMap<Film, FilmDto>().ReverseMap();
         CreateMap<Film, FilmListDto>().ReverseMap();
         CreateMap<Film, CreateFilmDto>().ReverseMap();
-        CreateMap<User, UserDto>().ReverseMap();
+        CreateMap<ApplicationUser, UserDto>().ReverseMap();
         CreateMap<Character, CharacterDto>().ReverseMap();
         CreateMap<Character, CreateCharacterDto>().ReverseMap();
         CreateMap<Director, DirectorDto>().ReverseMap();
         CreateMap<Director, DirectorListDto>().ReverseMap();
         CreateMap<Director, CreateDirectorDto>().ReverseMap();
+        CreateMap<ApplicationUser, UserDto>().ReverseMap();
+        CreateMap<ApplicationUser, UserListDto>();
     }
 }

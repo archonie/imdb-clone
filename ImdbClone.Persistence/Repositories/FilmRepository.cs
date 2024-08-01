@@ -23,7 +23,7 @@ public class FilmRepository : GenericRepository<Film>, IFilmRepository
 
     }
 
-    public async Task AddUser(Film film, User user)
+    public async Task AddUser(Film film, ApplicationUser user)
     {
         var watchedFilm = await _dbContext.Films.FindAsync(film.Id);
         var userWatched = await _dbContext.Users.FindAsync(user.Id);

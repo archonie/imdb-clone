@@ -24,7 +24,7 @@ public class FilmConfiguration : IEntityTypeConfiguration<Film>
             .WithMany(u => u.WatchedFilms)
             .UsingEntity<Dictionary<string, object>>(
                 "UserFilm",
-                j => j.HasOne<User>().WithMany().HasForeignKey("UserId"),
+                j => j.HasOne<ApplicationUser>().WithMany().HasForeignKey("UserId"),
                 j => j.HasOne<Film>().WithMany().HasForeignKey("FilmId"));
 
         builder.HasMany(f => f.Characters)

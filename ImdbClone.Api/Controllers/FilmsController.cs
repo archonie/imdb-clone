@@ -2,12 +2,14 @@ using ImdbClone.Application.DTOs.Film;
 using ImdbClone.Application.Features.Films.Requests.Commands;
 using ImdbClone.Application.Features.Films.Requests.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ImdbClone.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class FilmsController : ControllerBase
 {
     private readonly IMediator _mediator;
