@@ -10,7 +10,6 @@ namespace ImdbClone.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
 public class ActorsController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -43,8 +42,9 @@ public class ActorsController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult> Put([FromBody] UpdateActorDto actor)
+    public async Task<ActionResult> Put(int id, [FromBody] UpdateActorDto actor)
     {
+        actor.Id = id; 
         var command = new UpdateActorCommand { ActorDto = actor };
         await _mediator.Send(command);
         return NoContent();

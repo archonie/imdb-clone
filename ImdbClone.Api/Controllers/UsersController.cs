@@ -26,7 +26,7 @@ public class ApplicationUsersController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<DirectorDto>> Get(int id)
+    public async Task<ActionResult<UserDto>> Get(int id)
     {
         var film = await _mediator.Send(new GetUserDetailRequest { Id = id });
         return Ok(film);
@@ -51,6 +51,7 @@ public class ApplicationUsersController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult> Put(int id, [FromBody] UpdateUserDto user)
     {
+        user.Id = id;
         var command = new UpdateUserCommand { UserDto = user };
         await _mediator.Send(command);
         return NoContent();

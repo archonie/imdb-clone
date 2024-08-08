@@ -9,7 +9,6 @@ namespace ImdbClone.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
 
 public class DirectorsController : ControllerBase
 {
@@ -30,7 +29,7 @@ public class DirectorsController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<DirectorDto>> Get(int id)
     {
-        var film = await _mediator.Send(new GetDirectorDetailRequest(){Id = id});
+        var film = await _mediator.Send(new GetDirectorDetailRequest{Id = id});
         return Ok(film);
     }
 

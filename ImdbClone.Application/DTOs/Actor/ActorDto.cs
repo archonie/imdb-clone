@@ -3,7 +3,7 @@ using ImdbClone.Application.DTOs.Common;
 
 namespace ImdbClone.Application.DTOs.Actor;
 
-public class ActorDto : BaseDto
+public record ActorDto 
 {
     public string Name { get; set; }
     public int Age { get; set; }

@@ -28,7 +28,6 @@ public class ActorRepository : GenericRepository<Actor>, IActorRepository
         var actor = await _dbContext.Actors
             .Include(a => a.Characters)
             .FirstOrDefaultAsync(a=> a.Id == id);
-
         return actor;
     }
 }

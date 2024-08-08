@@ -32,7 +32,6 @@ public class UserRepository: GenericRepository<ApplicationUser>, IUserRepository
     public async Task<ApplicationUser> FindUserByEmail(string email)
     {
         return await _dbContext.Users.FirstOrDefaultAsync(u => u.Username == email);
-        
     }
 
     public string GenerateToken(ApplicationUser user)

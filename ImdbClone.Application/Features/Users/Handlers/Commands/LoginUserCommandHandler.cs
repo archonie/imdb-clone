@@ -9,12 +9,10 @@ namespace ImdbClone.Application.Features.Users.Handlers.Commands;
 public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, LoginResponse>
 {
     private readonly IUserRepository _userRepository;
-    private readonly IMapper _mapper;
 
-    public LoginUserCommandHandler(IUserRepository userRepository, IMapper mapper)
+    public LoginUserCommandHandler(IUserRepository userRepository)
     {
-        _userRepository = userRepository;
-        _mapper = mapper;
+        _userRepository = userRepository;   
     }
     public async Task<LoginResponse> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {

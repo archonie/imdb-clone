@@ -10,12 +10,10 @@ namespace ImdbClone.Application.Features.Actors.Handlers.Commands;
 public class DeleteActorCommandHandler: IRequestHandler<DeleteActorCommand, Unit>
 {
     private readonly IActorRepository _actorRepository;
-    private readonly IMapper _mapper;
 
-    public DeleteActorCommandHandler(IActorRepository actorRepository, IMapper mapper)
+    public DeleteActorCommandHandler(IActorRepository actorRepository)
     {
         _actorRepository = actorRepository;
-        _mapper = mapper;
     }
     public async Task<Unit> Handle(DeleteActorCommand request, CancellationToken cancellationToken)
     {
